@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -40,6 +36,16 @@ namespace Business.Concrete
             {
                 iCarDal.Add(car);
             }
+        }
+
+        public void Update(Car car)
+        {
+            iCarDal.Update(car);
+        }
+
+        public void Delete(Car car)
+        {
+            iCarDal.Delete(car);
         }
 
         public List<CarDetailsDto> GetAllCarDetails()
