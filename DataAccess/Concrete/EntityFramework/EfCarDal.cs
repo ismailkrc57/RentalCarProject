@@ -4,61 +4,32 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Core.DataAccess.EntityFramework;
+using Core.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : ICarDal
+    public class EfCarDal : EfEntityRepsitoryBase<Car, EfRentalCarContext>, ICarDal
     {
-        public Car Get(Expression<Func<Car, bool>> filterExpression)
+        public List<CarDetailsDto> GetAllCarDetails()
         {
             using (EfRentalCarContext context = new EfRentalCarContext())
             {
-                return context.Set<Car>().SingleOrDefault(filterExpression);
-            }
-
-            ;
-        }
-
-        public List<Car> GetAll(Expression<Func<Car, bool>> filterExpression = null)
-        {
-            using (EfRentalCarContext context = new EfRentalCarContext())
-            {
-                return filterExpression == null
-                     ? context.Set<Car>().ToList()
-                     : context.Set<Car>().Where(filterExpression).ToList();
-            }
-        }
-
-        public void Add(Car entity)
-        {
-            using (EfRentalCarContext context = new EfRentalCarContext())
-            {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-            }
-        }
-
-        public void Update(Car entity)
-        {
-            using (EfRentalCarContext context = new EfRentalCarContext())
-            {
-                var updatedEntity = context.Entry(entity);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
-            }
-        }
-
-        public void Delete(Car entity)
-        {
-            using (EfRentalCarContext context = new EfRentalCarContext())
-            {
-                var deletedEntity = context.Entry(entity);
-                deletedEntity.State = EntityState.Deleted;
-                context.SaveChanges();
+                var result = from c in context.Cars
+                             join b in context.Brands on c.BrandId equals b.Id
+                             join cl in context.Colors on c.ColorId equals cl.Id
+                             select new CarDetailsDto()
+                             {
+                                 Id = c.Id,
+                                 CarModel = c.CarModel,
+                                 BrandName = b.Name,
+                                 ColorName = cl.Name
+                             };
+                return result.ToList();
             }
         }
     }

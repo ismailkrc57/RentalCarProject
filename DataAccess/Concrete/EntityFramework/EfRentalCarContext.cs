@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Concrete.EntityFramework
+namespace Core.EntityFramework
 {
     public class EfRentalCarContext : DbContext
     {

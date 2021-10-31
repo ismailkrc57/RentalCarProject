@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -53,6 +54,11 @@ namespace DataAccess.Concrete.InMemory
         {
             Car carToDelete = GetById(car.Id);
             _Cars.Remove(carToDelete);
+        }
+
+        public List<CarDetailsDto> GetAllCarDetails()
+        {
+            throw new NotImplementedException();
         }
 
         public void Update(Car car)

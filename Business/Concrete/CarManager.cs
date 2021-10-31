@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -39,6 +40,11 @@ namespace Business.Concrete
             {
                 iCarDal.Add(car);
             }
+        }
+
+        public List<CarDetailsDto> GetAllCarDetails()
+        {
+            return iCarDal.GetAllCarDetails();
         }
     }
 }
