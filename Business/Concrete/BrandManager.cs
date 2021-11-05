@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -18,29 +16,33 @@ namespace Business.Concrete
             this.iBrandDal = iBrandDal;
         }
 
-        public Brand GetById(int id)
+
+        public IDataResult<Brand> GetById(int id)
         {
-            return iBrandDal.Get(b => b.Id == id);
+            return new SuccessDataResult<Brand>(iBrandDal.Get(b => b.Id == id), Message.BrandListed);
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            return iBrandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(iBrandDal.GetAll(), Message.BrandListed);
         }
 
-        public void Add(Brand brand)
+        public IResult Add(Brand brand)
         {
             iBrandDal.Add(brand);
+            return new SuccessResult(Message.BrandAdded);
         }
 
-        public void Update(Brand brand)
+        public IResult Update(Brand brand)
         {
             iBrandDal.Update(brand);
+            return new SuccessResult(Message.BrandUpdated);
         }
 
-        public void Delete(Brand brand)
+        public IResult Delete(Brand brand)
         {
             iBrandDal.Delete(brand);
+            return new SuccessResult(Message.BrandDeleted);
         }
     }
 }

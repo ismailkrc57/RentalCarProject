@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -15,42 +17,43 @@ namespace Business.Concrete
             this.iCarDal = iCarDal;
         }
 
-        public List<Car> GetAll()
+
+        public IDataResult<List<Car>> GetAll()
         {
-            return iCarDal.GetAll();
+            return new SuccessDataResult<List<Car>>(iCarDal.GetAll(),Message.CarListed);
         }
 
-        public List<Car> GetCarsByBrandId(int id)
+        public IDataResult<List<Car>> GetCarsByBrandId(int id)
         {
-            return iCarDal.GetAll(c => c.BrandId == id);
+            return new SuccessDataResult<List<Car>>(iCarDal.GetAll(c => c.BrandId == id), Message.CarListed);
         }
 
-        public List<Car> GetCarsByColorId(int id)
+        public IDataResult<List<Car>> GetCarsByColorId(int id)
         {
-            return iCarDal.GetAll(c => c.ColorId == id);
+            return new SuccessDataResult<List<Car>>(iCarDal.GetAll(c => c.ColorId == id), Message.CarListed);
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            if (car.Description.Length > 2 && car.DailyPrice > 0)
-            {
-                iCarDal.Add(car);
-            }
+            iCarDal.Add(car);
+            return new SuccessResult(Message.CarAdded);
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             iCarDal.Update(car);
+            return new SuccessResult(Message.CarUpdated);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             iCarDal.Delete(car);
+            return new SuccessResult(Message.CarDeleted);
         }
 
-        public List<CarDetailsDto> GetAllCarDetails()
+        public IDataResult<List<CarDetailsDto>> GetAllCarDetails()
         {
-            return iCarDal.GetAllCarDetails();
+            return new SuccessDataResult<List<CarDetailsDto>>(iCarDal.GetAllCarDetails(), Message.CarsDetailsListed);
         }
     }
 }
