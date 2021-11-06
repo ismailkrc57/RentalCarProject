@@ -20,7 +20,12 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(iCarDal.GetAll(),Message.CarListed);
+            return new SuccessDataResult<List<Car>>(iCarDal.GetAll(), Message.CarListed);
+        }
+
+        public IDataResult<Car> GetById(int id)
+        {
+            return new SuccessDataResult<Car>(iCarDal.Get(c => c.Id == id), Message.CarListed);
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(int id)

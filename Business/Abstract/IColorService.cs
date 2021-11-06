@@ -4,7 +4,7 @@ using Entities.Concrete;
 
 namespace Business.Abstract
 {
-    interface IColorService
+    public interface IColorService
     {
         IDataResult<Color> GetById(int id);
         IDataResult<List<Color>> GetAll();
