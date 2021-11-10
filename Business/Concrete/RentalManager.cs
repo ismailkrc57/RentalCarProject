@@ -36,12 +36,13 @@ namespace Business.Concrete
             var rentals = GetByCarId(rental.CarId);
             foreach (var VARIABLE in rentals.Data)
             {
-                if (VARIABLE.ReturnDate == null || VARIABLE.ReturnDate > DateTime.Now)
+                if (VARIABLE.ReturnDate.Equals(new DateTime()) || VARIABLE.ReturnDate >rental.RentDate)
                     return new ErrorResult(Message.Rented);
+                Console.WriteLine(DateTime.Now);
             }
             _iRentalDal.Add(rental);
             return new SuccessResult(Message.RentalAdded);
-            
+
         }
 
         public IResult Update(Rental rental)
