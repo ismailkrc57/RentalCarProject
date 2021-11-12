@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -27,12 +29,14 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Brand>>(iBrandDal.GetAll(), Message.BrandListed);
         }
 
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
             iBrandDal.Add(brand);
             return new SuccessResult(Message.BrandAdded);
         }
 
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Update(Brand brand)
         {
             iBrandDal.Update(brand);

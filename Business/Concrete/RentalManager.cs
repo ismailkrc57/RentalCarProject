@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -31,20 +34,23 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_iRentalDal.GetAll(), Message.RentalListed);
         }
 
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            var rentals = GetByCarId(rental.CarId);
-            foreach (var VARIABLE in rentals.Data)
+            var result = BusinessRule.Run(CheckIfReturnDateCorrect(rental));
+            if (result == null)
             {
-                if (VARIABLE.ReturnDate.Equals(new DateTime()) || VARIABLE.ReturnDate >rental.RentDate)
-                    return new ErrorResult(Message.Rented);
-                Console.WriteLine(DateTime.Now);
+                _iRentalDal.Add(rental);
+                return new SuccessResult(Message.RentalAdded);
             }
-            _iRentalDal.Add(rental);
-            return new SuccessResult(Message.RentalAdded);
+
+            return result;
 
         }
 
+
+
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Update(Rental rental)
         {
             if (rental == null)
@@ -65,6 +71,23 @@ namespace Business.Concrete
 
             _iRentalDal.Delete(rental);
             return new SuccessResult(Message.RentAlDeleted);
+        }
+
+
+        private IResult CheckIfReturnDateCorrect(Rental rental)
+        {
+            var result = _iRentalDal.GetAll(r => r.CarId == rental.CarId);
+
+            foreach (var rntl in result)
+            {
+                if (rntl.RentDate == DateTime.MinValue || rntl.ReturnDate > rental.RentDate)
+                {
+                    return new ErrorResult(Message.Rented);
+                }
+            }
+
+
+            return new SuccessResult();
         }
     }
 }

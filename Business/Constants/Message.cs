@@ -35,5 +35,13 @@
         public static string CustomerUpdated = "customer updated";
         public static string CustomerDeleted = "customer deleted";
         public static string Rented = "this car has already been rented";
+        public static string EmailExistError = "This email is already in use";
+
+        public static string ImagesListed = "images listed";
+        public static string ImageAdded = "image added";
+        public static string ImageDeleted = "image deleted";
+        public static string NumberOfImageError = "you can upload up to 5 images for this car.";
+        public static string ThereIsNoImagesError = "this car doesn't have any image";
+        public static string DefaultImagesListed = "default image listed";
     }
 }

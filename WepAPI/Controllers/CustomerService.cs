@@ -26,6 +26,17 @@ namespace WepAPI.Controllers
 
             return BadRequest(result.Message);
         }
+        [HttpGet("getallcustomerdetails")]
+        public IActionResult GetAllCustomerDetails()
+        {
+            var result = _customerService.GetAllCustomerDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result.Message);
+        }
 
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
