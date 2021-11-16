@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Adapters.Abstracts;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Core.Utilities.Results;
 
 namespace Adapters.Concretes
 {

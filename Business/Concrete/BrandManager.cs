@@ -21,32 +21,32 @@ namespace Business.Concrete
 
         public IDataResult<Brand> GetById(int id)
         {
-            return new SuccessDataResult<Brand>(iBrandDal.Get(b => b.Id == id), Message.BrandListed);
+            return new SuccessDataResult<Brand>(iBrandDal.Get(b => b.Id == id), Messages.BrandListed);
         }
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(iBrandDal.GetAll(), Message.BrandListed);
+            return new SuccessDataResult<List<Brand>>(iBrandDal.GetAll(), Messages.BrandListed);
         }
 
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
             iBrandDal.Add(brand);
-            return new SuccessResult(Message.BrandAdded);
+            return new SuccessResult(Messages.BrandAdded);
         }
 
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Update(Brand brand)
         {
             iBrandDal.Update(brand);
-            return new SuccessResult(Message.BrandUpdated);
+            return new SuccessResult(Messages.BrandUpdated);
         }
 
         public IResult Delete(Brand brand)
         {
             iBrandDal.Delete(brand);
-            return new SuccessResult(Message.BrandDeleted);
+            return new SuccessResult(Messages.BrandDeleted);
         }
     }
 }

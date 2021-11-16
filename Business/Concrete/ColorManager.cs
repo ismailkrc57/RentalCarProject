@@ -21,32 +21,32 @@ namespace Business.Concrete
 
         public IDataResult<Color> GetById(int id)
         {
-            return new SuccessDataResult<Color>(iColorDal.Get(c => c.Id == id), Message.ColorListed);
+            return new SuccessDataResult<Color>(iColorDal.Get(c => c.Id == id), Messages.ColorListed);
         }
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>(iColorDal.GetAll(), Message.ColorListed);
+            return new SuccessDataResult<List<Color>>(iColorDal.GetAll(), Messages.ColorListed);
         }
 
         [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {
             iColorDal.Add(color);
-            return new SuccessResult(Message.ColorAdded);
+            return new SuccessResult(Messages.ColorAdded);
         }
 
         [ValidationAspect(typeof(ColorValidator))]
         public IResult Update(Color color)
         {
             iColorDal.Update(color);
-            return new SuccessResult(Message.ColorUpdated);
+            return new SuccessResult(Messages.ColorUpdated);
         }
 
         public IResult Delete(Color color)
         {
             iColorDal.Delete(color);
-            return new SuccessResult(Message.ColorDeleted);
+            return new SuccessResult(Messages.ColorDeleted);
         }
     }
 }

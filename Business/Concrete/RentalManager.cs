@@ -21,17 +21,17 @@ namespace Business.Concrete
         }
         public IDataResult<Rental> GetById(int id)
         {
-            return new SuccessDataResult<Rental>(_iRentalDal.Get(r => r.Id == id), Message.RentalListed);
+            return new SuccessDataResult<Rental>(_iRentalDal.Get(r => r.Id == id), Messages.RentalListed);
         }
 
         public IDataResult<List<Rental>> GetByCarId(int carId)
         {
-            return new SuccessDataResult<List<Rental>>(_iRentalDal.GetAll(r => r.CarId == carId), Message.RentalListed);
+            return new SuccessDataResult<List<Rental>>(_iRentalDal.GetAll(r => r.CarId == carId), Messages.RentalListed);
         }
 
         public IDataResult<List<Rental>> GetAll()
         {
-            return new SuccessDataResult<List<Rental>>(_iRentalDal.GetAll(), Message.RentalListed);
+            return new SuccessDataResult<List<Rental>>(_iRentalDal.GetAll(), Messages.RentalListed);
         }
 
         [ValidationAspect(typeof(RentalValidator))]
@@ -41,7 +41,7 @@ namespace Business.Concrete
             if (result == null)
             {
                 _iRentalDal.Add(rental);
-                return new SuccessResult(Message.RentalAdded);
+                return new SuccessResult(Messages.RentalAdded);
             }
 
             return result;
@@ -55,22 +55,22 @@ namespace Business.Concrete
         {
             if (rental == null)
             {
-                return new ErrorResult(Message.EntityNull);
+                return new ErrorResult(Messages.EntityNull);
             }
 
             _iRentalDal.Update(rental);
-            return new SuccessResult(Message.RentAlUpdated);
+            return new SuccessResult(Messages.RentAlUpdated);
         }
 
         public IResult Delete(Rental rental)
         {
             if (rental == null)
             {
-                return new ErrorResult(Message.EntityNull);
+                return new ErrorResult(Messages.EntityNull);
             }
 
             _iRentalDal.Delete(rental);
-            return new SuccessResult(Message.RentAlDeleted);
+            return new SuccessResult(Messages.RentAlDeleted);
         }
 
 
@@ -82,7 +82,7 @@ namespace Business.Concrete
             {
                 if (rntl.RentDate == DateTime.MinValue || rntl.ReturnDate > rental.RentDate)
                 {
-                    return new ErrorResult(Message.Rented);
+                    return new ErrorResult(Messages.Rented);
                 }
             }
 

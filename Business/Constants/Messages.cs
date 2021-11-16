@@ -1,6 +1,6 @@
 ﻿namespace Business.Constants
 {
-    public static class Message
+    public static class Messages
     {
         public static string CarListed = "cars are listed";
         public static string CarAdded = "car added";
@@ -43,5 +43,14 @@
         public static string NumberOfImageError = "you can upload up to 5 images for this car.";
         public static string ThereIsNoImagesError = "this car doesn't have any image";
         public static string DefaultImagesListed = "default image listed";
+
+        public static string UserNotFound = " user not found";
+        public static string PasswordError = "password is not correct";
+        public static string LoginSuccessfully = "Login successfully";
+        public static string UserAlreadyExist = "user already exist";
+        public static string UserRegistered = "user registered successfully";
+
+        public static string TokenCreated = "access token created successfully";
+        public static string? AuthorizationDenied = "you are not authorize";
     }
 }

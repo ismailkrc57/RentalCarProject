@@ -20,18 +20,18 @@ namespace Business.Concrete
         }
         public IDataResult<Customer> GetById(int id)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id), Message.CustomerListed);
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id), Messages.CustomerListed);
         }
 
         public IDataResult<List<Customer>> GetAll()
         {
-            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Message.CustomerListed);
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.CustomerListed);
         }
 
         public IDataResult<List<CustomerDetailsDto>> GetAllCustomerDetails()
         {
             return new SuccessDataResult<List<CustomerDetailsDto>>(_customerDal.GetAllCustomerDetails(),
-                Message.CustomerListed);
+                Messages.CustomerListed);
         }
 
         [ValidationAspect(typeof(CustomerValidator))]
@@ -39,7 +39,7 @@ namespace Business.Concrete
         {
 
             _customerDal.Add(customer);
-            return new SuccessResult(Message.CustomerAdded);
+            return new SuccessResult(Messages.CustomerAdded);
 
         }
 
@@ -47,18 +47,18 @@ namespace Business.Concrete
         public IResult Update(Customer customer)
         {
             if (customer == null)
-                return new ErrorResult(Message.EntityNull);
+                return new ErrorResult(Messages.EntityNull);
             _customerDal.Update(customer);
-            return new SuccessResult(Message.CustomerUpdated);
+            return new SuccessResult(Messages.CustomerUpdated);
         }
 
 
         public IResult Delete(Customer customer)
         {
             if (customer == null)
-                return new ErrorResult(Message.EntityNull);
+                return new ErrorResult(Messages.EntityNull);
             _customerDal.Delete(customer);
-            return new SuccessResult(Message.CustomerDeleted);
+            return new SuccessResult(Messages.CustomerDeleted);
         }
     }
 }

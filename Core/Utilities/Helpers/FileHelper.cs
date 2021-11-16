@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using Microsoft.AspNetCore.Http;
@@ -15,7 +11,7 @@ namespace Core.Utilities.Helpers
     {
         private static string _currentDirectory = Environment.CurrentDirectory + "\\wwwroot";
         private static string _folderName = "\\Images\\";
-        public static string DefaultImagePath = "Images/default.png";
+        public static string DefaultImagePath = @"\Images\default.png";
 
         public static IResult Upload([FromForm] IFormFile file)
         {
