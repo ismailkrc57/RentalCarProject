@@ -51,6 +51,6 @@
         public static string UserRegistered = "user registered successfully";
 
         public static string TokenCreated = "access token created successfully";
-        public static string? AuthorizationDenied = "you are not authorize";
+        public static string AuthorizationDenied = "you are not authorize";
     }
 }
