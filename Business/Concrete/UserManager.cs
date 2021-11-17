@@ -19,6 +19,7 @@ namespace Business.Concrete
         {
             _userDal = userDal;
         }
+
         public IDataResult<User> GetById(int id)
         {
             return new SuccessDataResult<User>(_userDal.Get(u => u.Id == id), Messages.UserListed);
@@ -44,7 +45,6 @@ namespace Business.Concrete
             }
 
             return new ErrorDataResult<List<OperationClaim>>();
-
         }
 
         public IDataResult<List<User>> GetAll()
@@ -57,7 +57,7 @@ namespace Business.Concrete
         public IResult Add(User user)
         {
             var result = BusinessRule.Run(CheckIfEmailExist(user.Email));
-            if (result.Success)
+            if (result == null)
             {
                 _userDal.Add(user);
                 return new SuccessResult(Messages.UserAdded);

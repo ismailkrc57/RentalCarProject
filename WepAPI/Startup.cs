@@ -1,3 +1,6 @@
+using Core.DependencyResolvers;
+using Core.Extensions;
+using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +26,6 @@ namespace WepAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddCors(options =>
             {
@@ -45,11 +47,11 @@ namespace WepAPI
                     IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                 };
             });
-            services.AddSwaggerGen(c =>
+            services.AddDependencyResolvers(new ICoreModule[]
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WepAPI", Version = "v1" });
+                new CoreModule()
             });
-
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "WepAPI", Version = "v1"}); });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,10 +71,7 @@ namespace WepAPI
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

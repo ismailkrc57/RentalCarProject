@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -23,7 +24,8 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Brand>(iBrandDal.Get(b => b.Id == id), Messages.BrandListed);
         }
-
+        
+        [SecuredOperation("getall")]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(iBrandDal.GetAll(), Messages.BrandListed);
