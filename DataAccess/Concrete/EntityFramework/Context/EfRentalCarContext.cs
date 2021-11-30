@@ -10,6 +10,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         {
             optionsBuilder.UseSqlServer(@"server=DESKTOP-U9N2A0J;Database=RentalCar;Trusted_Connection=true");
         }
+      
 
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }

@@ -1,16 +1,21 @@
 ﻿using System.Collections.Generic;
 using Business.Abstract;
+using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Exception;
+using Core.Aspects.Autofac.Performance;
 using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
-
 namespace Business.Concrete
 {
+    [ExceptionLogAspect(typeof(FileLogger))]
+    [ExceptionLogAspect(typeof(ConsoleLogger))]
     public class CarManager : ICarService
     {
         private ICarDal iCarDal;
@@ -20,8 +25,9 @@ namespace Business.Concrete
             this.iCarDal = iCarDal;
         }
 
-
+        [PerformanceAspect(2)]
         [CacheAspect()]
+        [SecuredOperation("getall")]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(iCarDal.GetAll(), Messages.CarListed);

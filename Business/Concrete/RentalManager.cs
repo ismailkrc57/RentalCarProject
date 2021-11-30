@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Exception;
 using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-
 namespace Business.Concrete
 {
+    [ExceptionLogAspect(typeof(FileLogger))]
+    [ExceptionLogAspect(typeof(ConsoleLogger))]
     public class RentalManager : IRentalService
     {
         private IRentalDal _iRentalDal;

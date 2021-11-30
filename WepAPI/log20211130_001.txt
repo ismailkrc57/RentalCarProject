@@ -1,0 +1,1 @@
+2021-11-30 23:24:18.269 +03:00 [ERR] {"ExceptionMessage":"Validation failed: \r\n -- Email: 'Email' is not a valid email address. Severity: Error","MethodName":"Login","LogParameters":[{"Name":"uuForLoginDto","Value":{"Email":"string","Password":"string","$type":"UserForLoginDto"},"Type":"UserForLoginDto","$type":"LogParameter"}],"$type":"LogDetailWithException"}

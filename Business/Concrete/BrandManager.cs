@@ -3,13 +3,17 @@ using Business.Abstract;
 using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Exception;
 using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace Business.Concrete
 {
+    [ExceptionLogAspect(typeof(FileLogger))]
+    [ExceptionLogAspect(typeof(ConsoleLogger))]
     public class BrandManager : IBrandService
     {
         private IBrandDal iBrandDal;
@@ -24,7 +28,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Brand>(iBrandDal.Get(b => b.Id == id), Messages.BrandListed);
         }
-        
+
         [SecuredOperation("getall")]
         public IDataResult<List<Brand>> GetAll()
         {

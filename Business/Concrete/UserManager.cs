@@ -3,7 +3,9 @@ using System.Linq;
 using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Exception;
 using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Entities.Concrete;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -11,6 +13,8 @@ using DataAccess.Abstract;
 
 namespace Business.Concrete
 {
+    [ExceptionLogAspect(typeof(FileLogger))]
+    [ExceptionLogAspect(typeof(ConsoleLogger))]
     public class UserManager : IUserService
     {
         private IUserDal _userDal;

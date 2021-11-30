@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <NeutralLanguage></NeutralLanguage>
+    <PublicSign>false</PublicSign>
+    <SignAssembly>falseS</SignAssembly>
   </PropertyGroup>
 
   <ItemGroup>

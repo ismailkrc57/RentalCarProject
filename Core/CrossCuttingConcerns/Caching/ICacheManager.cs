@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
-namespace Core.CrossCuttingConcerns.Caching
+﻿namespace Core.CrossCuttingConcerns.Caching
 {
     public interface ICacheManager
     {

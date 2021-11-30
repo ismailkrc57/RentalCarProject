@@ -1,15 +1,20 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Exception;
 using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
 using Entities.DTOs;
 
+
 namespace Business.Concrete
 {
+    [ExceptionLogAspect(typeof(ConsoleLogger))]
+    [ExceptionLogAspect(typeof(FileLogger))]
     public class AuthManager : IAuthService
     {
         private IUserService _userService;

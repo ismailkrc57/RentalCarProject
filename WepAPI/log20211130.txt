@@ -1,0 +1,1 @@
+2021-11-30 23:23:58.751 +03:00 [ERR] {"ExceptionMessage":"you are not authorize","MethodName":"GetAll","LogParameters":[],"$type":"LogDetailWithException"}
