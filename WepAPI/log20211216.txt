@@ -1,0 +1,7 @@
+2021-12-16 14:42:43.369 +03:00 [ERR] {"ExceptionMessage":"you are not authorize","MethodName":"GetAll","LogParameters":[],"$type":"LogDetailWithException"}
+2021-12-16 14:44:20.735 +03:00 [ERR] {"ExceptionMessage":"you are not authorize","MethodName":"GetAll","LogParameters":[],"$type":"LogDetailWithException"}
+2021-12-16 14:50:41.381 +03:00 [ERR] {"ExceptionMessage":"you are not authorize","MethodName":"GetAll","LogParameters":[],"$type":"LogDetailWithException"}
+2021-12-16 14:50:46.081 +03:00 [ERR] {"ExceptionMessage":"you are not authorize","MethodName":"GetAll","LogParameters":[],"$type":"LogDetailWithException"}
+2021-12-16 14:53:14.886 +03:00 [ERR] {"ExceptionMessage":"you are not authorize","MethodName":"GetAll","LogParameters":[],"$type":"LogDetailWithException"}
+2021-12-16 14:53:21.682 +03:00 [ERR] {"ExceptionMessage":"you are not authorize","MethodName":"GetAll","LogParameters":[],"$type":"LogDetailWithException"}
+2021-12-16 14:53:38.159 +03:00 [ERR] {"ExceptionMessage":"you are not authorize","MethodName":"GetAll","LogParameters":[],"$type":"LogDetailWithException"}

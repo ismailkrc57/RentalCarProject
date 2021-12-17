@@ -29,7 +29,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Brand>(iBrandDal.Get(b => b.Id == id), Messages.BrandListed);
         }
 
-        [SecuredOperation("getall")]
+        //[SecuredOperation("getall")]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(iBrandDal.GetAll(), Messages.BrandListed);

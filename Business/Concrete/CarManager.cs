@@ -27,7 +27,7 @@ namespace Business.Concrete
 
         [PerformanceAspect(2)]
         [CacheAspect()]
-        [SecuredOperation("getall")]
+        // [SecuredOperation("getall")]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(iCarDal.GetAll(), Messages.CarListed);
